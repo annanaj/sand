@@ -4,7 +4,8 @@ on:
         branches:
             - main
 jobs:
-    build:
+    build-and-deploy:
+        
         runs-on: ubuntu-latest
 
         steps:
@@ -21,6 +22,9 @@ jobs:
 
             - name: TypeScript Check
               run: yarn tsc
+              
+            - name: Lint with Eslint
+              run: yarn lint
 
             - name: Run Tests
               run: yarn test
@@ -37,3 +41,13 @@ jobs:
               with:
                   name: production-files
                   path: ./dist
+                  
+            - name: Deploy
+              # if you have different requirements for deployment suppose your main brach for production and you have another branch for development then you can use this branch option to deploy your project to different branches.
+              if: github.ref == 'refs/heads/main'
+              # you can not change the name of this action.
+              uses: JamesIves/github-pages-deploy-action@4.1.4
+              with:
+                  # if uses: JamesIves/github-pages-deploy-action@4.1.4 runs it will automatically create new branch which name is gh-pages.
+                  branch: gh-pages
+                  folder: dist
