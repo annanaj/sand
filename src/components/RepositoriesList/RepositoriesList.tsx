@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getRepositoriesForMultipleUsers } from '@/graphql/gql';
-import { Repository } from '@/types/repository';
+import { getRepositoriesForMultipleUsers } from "@/graphql/gql";
+import { Repository } from "@/types/repository";
 
 type RepositoriesProps = {
 	owners: string[];

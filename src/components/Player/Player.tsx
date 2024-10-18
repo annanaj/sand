@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '../ui/button';
 
 import Audio from '/short_adventure.mp3';
 import Video from '/short_video.mp4';
