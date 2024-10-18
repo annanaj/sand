@@ -38,18 +38,17 @@ jobs:
               with:
                   name: production-files
                   path: ./dist
-    deploy:
-        name: Deploy
-        needs: build
-        runs-on: ubuntu-latest
 
-        steps:
-            -   name: Download artifact
-                uses: actions/download-artifact@v3
-                with:
-                    name: production-files
-                    path: ./dist
-            -   name: Deploy to GitHub Pages
-                uses: peaceiris/actions-gh-pages@v3
-                with:
-                    publish_dir: ./dist
+            - name: Deploy to GitHub Pages
+              run: |
+                  git config user.name "annanaj"
+                  git config user.email "annanaj@users.noreply.github.com"
+                  git remote rm origin
+                  git remote add origin https://$GH_TOKEN@github.com/annanaj/sand.git
+                  git fetch origin
+                  git checkout -b gh-pages
+                  git add --all
+                  git commit -m "deploy: ${{ github.sha }}"
+                  git push -u origin gh-pages --force
+                env:
+                  GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
