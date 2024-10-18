@@ -1,15 +1,15 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import { Repository } from '@/types/repository';
 
-const GITHUB_TOKEN = process.env.VITE_PUBLIC_GITHUB_TOKEN;
+const GITHUB_GQL_TOKEN = process.env.GITHUB_GQL_TOKEN;
 
-if (!GITHUB_TOKEN) {
+if (!GITHUB_GQL_TOKEN) {
 	throw new Error('GitHub token not found in environment variables');
 }
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
 	headers: {
-		Authorization: `Bearer ${GITHUB_TOKEN}`,
+		Authorization: `Bearer ${GITHUB_GQL_TOKEN}`,
 	},
 });
 
@@ -61,7 +61,6 @@ export const getRepositoriesForMultipleUsers = async (
 	owners: string[],
 	first: number = 10
 ): Promise<Record<string, Repository[]>> => {
-	console.log(GITHUB_TOKEN);
 	try {
 		// Log the query to check if it's correctly formed
 		console.log('Executing query for owners:', owners);
@@ -107,7 +106,6 @@ export const getRepositoriesForMultipleUsers = async (
 	} catch (error: unknown) {
 		// Log the complete error object for more details
 		console.error('Error fetching repositories:', error);
-
 		return {};
 	}
 };
