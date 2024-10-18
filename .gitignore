@@ -1,7 +1,6 @@
 *.log
 yarn-debug.log*
 yarn-error.log*
-
 node_modules
 dist-ssr
 *.local
