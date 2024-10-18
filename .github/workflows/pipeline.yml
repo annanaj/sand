@@ -4,7 +4,7 @@ on:
         branches:
             - main
 jobs:
-    build-and-deploy:
+    build:
         
         runs-on: ubuntu-latest
 
@@ -34,11 +34,28 @@ jobs:
               env:
                   EMAIL_USER: ${{ secrets.EMAIL_USER }}
                   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-
+                  
+            - name: Upload production-ready build files
+              uses: actions/upload-artifact@v3
+              with:
+                name: production-files
+                path: ./dist
+    
+    deploy:
+        name: Deploy
+        needs: build
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
+        
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: production-files
+                  path: ./dist
+            
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
-              env:
-                  VITE_PUBLIC_GITHUB_TOKEN: ${{ secrets.VITE_PUBLIC_GITHUB_TOKEN }}
