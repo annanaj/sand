@@ -103,7 +103,7 @@ export const getRepositoriesForMultipleUsers = async (
 			},
 			{} as Record<string, Repository[]>
 		);
-	} catch (error: any) {
+	} catch (error: unknown) {
 		// Log the complete error object for more details
 		console.error('Error fetching repositories:', error);
 
