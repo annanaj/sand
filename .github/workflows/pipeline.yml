@@ -5,9 +5,7 @@ on:
             - main
 jobs:
     build:
-        
         runs-on: ubuntu-latest
-
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
@@ -34,6 +32,7 @@ jobs:
               env:
                   EMAIL_USER: ${{ secrets.EMAIL_USER }}
                   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+                  VITE_PUBLIC_GITHUB_TOKEN: ${{ secrets.VITE_PUBLIC_GITHUB_TOKEN }}
                   
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v3
@@ -42,11 +41,9 @@ jobs:
                 path: ./dist
     
     deploy:
-        name: Deploy
         needs: build
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main'
-        
         steps:
             - name: Download artifact
               uses: actions/download-artifact@v3
