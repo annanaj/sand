@@ -61,6 +61,7 @@ export const getRepositoriesForMultipleUsers = async (
 	owners: string[],
 	first: number = 10
 ): Promise<Record<string, Repository[]>> => {
+	console.log(GITHUB_TOKEN);
 	try {
 		// Log the query to check if it's correctly formed
 		console.log('Executing query for owners:', owners);
