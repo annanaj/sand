@@ -34,10 +34,9 @@ jobs:
               env:
                   EMAIL_USER: ${{ secrets.EMAIL_USER }}
                   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-                  VITE_PUBLIC_GITHUB_TOKEN: ${{ secrets.VITE_PUBLIC_GITHUB_TOKEN }}
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               with:
-                  github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
