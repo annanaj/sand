@@ -42,7 +42,6 @@
 		"vite-plugin-environment": "^1.1.3"
 	},
 	"devDependencies": {
-		"@shadcn/ui": "^0.0.4",
 		"@svgr/cli": "^8.1.0",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.5.0",
