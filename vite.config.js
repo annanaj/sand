@@ -7,11 +7,16 @@ import EnvironmentPlugin from 'vite-plugin-environment';
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
+
 	return {
 		plugins: [
 			react(),
 			svgr({ include: '**/*.svg' }),
-			EnvironmentPlugin('all'),
+			EnvironmentPlugin({
+				NODE_ENV: mode,
+				VITE_PUBLIC_GITHUB_TOKEN: '',
+				SENTRY_AUTH_TOKEN: '',
+			}),
 			sentryVitePlugin({
 				authToken: process.env.SENTRY_AUTH_TOKEN,
 				org: 'mine-92',
@@ -25,7 +30,7 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 		build: {
-			sourcemap: true, // sentry - source map generation must be turned on
+			sourcemap: true, // Enable source map generation
 		},
 		test: {
 			globals: true,
