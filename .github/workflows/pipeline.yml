@@ -32,7 +32,7 @@ jobs:
               env:
                   EMAIL_USER: ${{ secrets.EMAIL_USER }}
                   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-                  GITHUB_GQL_TOKEN: ${{ secrets.GITHUB_GQL_TOKEN }}
+                  GQL_GITHUB_TOKEN: ${{ secrets.GQL_GITHUB_TOKEN }}
                   
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v3

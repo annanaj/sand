@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
 			svgr({ include: '**/*.svg' }),
 			EnvironmentPlugin({
 				NODE_ENV: mode,
-				GITHUB_GQL_TOKEN: '',
+				GQL_GITHUB_TOKEN: '',
 				SENTRY_AUTH_TOKEN: '',
 			}),
 			sentryVitePlugin({

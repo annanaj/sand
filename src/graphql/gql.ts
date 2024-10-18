@@ -1,15 +1,15 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import { Repository } from '@/types/repository';
 
-const GITHUB_GQL_TOKEN = process.env.GITHUB_GQL_TOKEN;
+const GQL_GITHUB_TOKEN = process.env.GQL_GITHUB_TOKEN;
 
-if (!GITHUB_GQL_TOKEN) {
+if (!GQL_GITHUB_TOKEN) {
 	throw new Error('GitHub token not found in environment variables');
 }
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
 	headers: {
-		Authorization: `Bearer ${GITHUB_GQL_TOKEN}`,
+		Authorization: `Bearer ${GQL_GITHUB_TOKEN}`,
 	},
 });
 
