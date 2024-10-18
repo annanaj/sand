@@ -107,11 +107,6 @@ export const getRepositoriesForMultipleUsers = async (
 		// Log the complete error object for more details
 		console.error('Error fetching repositories:', error);
 
-		// Log specific GraphQL error messages if available
-		if (error.response && error.response.errors) {
-			console.error('GraphQL errors:', error.response.errors);
-		}
-
 		return {};
 	}
 };
