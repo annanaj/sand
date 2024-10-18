@@ -2,7 +2,7 @@
 	"homepage": "https://annanaj.github.io/sand",
 	"name": "sand",
 	"private": true,
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"type": "module",
 	"description": "just a simple scratch crud app",
 	"scripts": {
