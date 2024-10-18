@@ -8,9 +8,9 @@ import Keyframes from './components/Keyframes/Keyframes';
 import Player from './components/Player/Player';
 import UsersList from './components/UsersList/UsersList';
 import ShopItem from './components/ShopItem/ShopItem';
+import RepositoriesList from './components/RepositoriesList/RepositoriesList';
 
 import './index.css';
-import RepositoriesList from '@/components/RepositoriesList/RepositoriesList';
 
 export default function App() {
 	return (
