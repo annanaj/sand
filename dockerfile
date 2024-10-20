@@ -1,5 +1,6 @@
 # Stage 1: Build the React app
-FROM node:alpine as builder
+FROM node:alpine AS builder
+ENV NODE_ENV development
 WORKDIR /app
 COPY package*.json ./
 COPY yarn*.lock ./
