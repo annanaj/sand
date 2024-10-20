@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
 				project: 'javascript-react',
 			}),
 		],
-		// base: '/sand',
+		base: '/sand',
 		resolve: {
 			alias: {
 				'@': path.resolve(__dirname, './src'),
