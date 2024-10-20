@@ -50,7 +50,7 @@ export default function Player() {
 	return (
 		<>
 			<div className="card-container items-center">
-				<h2 className="title">Listen & watch</h2>
+				<h2 className="title">Listen & watchhhhhh</h2>
 				<audio ref={audioRef} className={styles.media} controls>
 					<source src={Audio} type="audio/mpeg" />
 					Your browser does not support the audio tag.
