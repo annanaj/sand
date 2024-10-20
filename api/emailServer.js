@@ -9,13 +9,11 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 dotenv.config({ path: '.env.local' });
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-
 app.use(express.static('public'));
 
 const transporter = nodemailer.createTransport({
@@ -29,9 +27,7 @@ const transporter = nodemailer.createTransport({
 // endpoint pro post na odesílání emailů
 app.post('/send-email', (req, res) => {
 	const { email, message } = req.body;
-
 	const htmlTemplate = emailTemplate(message);
-
 	const mailOptions = {
 		from: process.env.EMAIL_USER,
 		to: email,
