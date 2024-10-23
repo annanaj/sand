@@ -8,7 +8,7 @@
 - runs on Vite 
 - data fetches via Axios
 - API mocked using json-server pkg and cors middleware (server to be started via terminal npx json-server --watch api/db.json --port 5001)
-- Emails are sent via Nodemailer and Express server (with body-parser and Gmail transporter)
+- Emails are sent via Nodemailer and Express server (with body-parser and Gmail transporter, server to be started via terminal node api/emailServer.js)
 - uses TypeScript - ts config based on Matt Pocock's The TSConfig Cheat Sheet
 - data are fetched via GraphQL query from GitHub API with GH personal token
 - Sentry for error checking included
