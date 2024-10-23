@@ -2,6 +2,7 @@ import React from 'react';
 import Lottie, { Action } from 'lottie-react';
 import checkmark from './checkmark.json';
 import hamburger from './hamburger.json';
+import { useRive } from '@rive-app/react-canvas';
 
 interface Interactivity {
 	mode: 'scroll' | 'cursor';
@@ -20,6 +21,22 @@ const interactivity: Interactivity = {
 };
 
 export default function Animations() {
+	const { rive, RiveComponent } = useRive({
+		src: 'https://cdn.rive.app/animations/vehicles.riv',
+		autoplay: false,
+	});
+
+	const { rive: publish, RiveComponent: PublishButton } = useRive({
+		src: 'sand/publish.riv',
+		autoplay: false,
+	});
+
+	const { rive: localRive, RiveComponent: Button } = useRive({
+		src: 'sand/button.riv',
+		autoplay: true,
+		animations: 'Active',
+	});
+
 	return (
 		<div className="card-container items-center">
 			<h2 className="title">Lottie pre/made</h2>
@@ -36,11 +53,26 @@ export default function Animations() {
 					loop={false}
 					autoplay={false}
 					interactivity={interactivity} // need to create type for it
-					className="w-16 h-16"
+					className="w-10 h-10"
 				/>
 			</div>
 
 			<h2 className="title">Rive creations</h2>
+			<RiveComponent
+				onMouseEnter={() => rive && rive.play()}
+				onMouseLeave={() => rive && rive.pause()}
+				className="w-64 h-40"
+			/>
+			<PublishButton
+				onMouseEnter={() => publish && publish.play()}
+				onMouseLeave={() => publish && publish.pause()}
+				className="w-64 h-20"
+			/>
+			<Button
+				onMouseEnter={() => localRive && localRive.play()}
+				onMouseLeave={() => localRive && localRive.pause()}
+				className="w-64 h-20"
+			/>
 		</div>
 	);
 }

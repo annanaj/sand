@@ -922,6 +922,18 @@
   dependencies:
     "@radix-ui/react-compose-refs" "1.1.0"
 
+"@rive-app/canvas@2.21.6":
+  version "2.21.6"
+  resolved "https://registry.yarnpkg.com/@rive-app/canvas/-/canvas-2.21.6.tgz#810634db5945151592e01bfd305d2a54b78941e2"
+  integrity sha512-4AKFgGCC38zmembwYzZVLAo2655caQrh+ju96SrAJWXHdAvO1mPgrDNDLv+FSNdlpoPhwBKivfESayIpWMls6g==
+
+"@rive-app/react-canvas@^4.14.5":
+  version "4.14.5"
+  resolved "https://registry.yarnpkg.com/@rive-app/react-canvas/-/react-canvas-4.14.5.tgz#fefd60b295bceb672abb2e1fd471ed82467075fb"
+  integrity sha512-KONFDp6yhq0sdHc4/GfQZcsb5h7plZElr3z++4HqTDh5Q5pVqsrVNaTyQmdV1RC2zRdpArDIoto+X5uQZq7K/A==
+  dependencies:
+    "@rive-app/canvas" "2.21.6"
+
 "@rollup/pluginutils@^5.0.5":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.1.2.tgz#d3bc9f0fea4fd4086aaac6aa102f3fa587ce8bd9"
