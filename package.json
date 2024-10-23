@@ -5,6 +5,7 @@
 	"version": "1.0.0",
 	"type": "module",
 	"description": "just a simple scratch crud app",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
 		"start": "json-server --watch api/db.json --port 5001",
