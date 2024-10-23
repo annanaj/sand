@@ -32,8 +32,7 @@ export default function Animations() {
 	});
 
 	const { rive: localRive, RiveComponent: Button } = useRive({
-		src: 'sand/button.riv',
-		autoplay: true,
+		src: 'sand/button-machine.riv',
 		animations: 'Active',
 	});
 
@@ -61,7 +60,7 @@ export default function Animations() {
 			<RiveComponent
 				onMouseEnter={() => rive && rive.play()}
 				onMouseLeave={() => rive && rive.pause()}
-				className="w-64 h-40"
+				className="w-64 h-20"
 			/>
 			<PublishButton
 				onMouseEnter={() => publish && publish.play()}
