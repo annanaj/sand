@@ -10,7 +10,7 @@ interface Interactivity {
 }
 
 const interactivity: Interactivity = {
-	mode: 'cursor',
+	mode: 'cursor', // nebo scroll
 	actions: [
 		{
 			position: { x: [0, 1], y: [0, 1] },
@@ -65,12 +65,12 @@ export default function Animations() {
 			<PublishButton
 				onMouseEnter={() => publish && publish.play()}
 				onMouseLeave={() => publish && publish.pause()}
-				className="w-64 h-20"
+				className="w-64 h-32 mt-[-10px]"
 			/>
 			<Button
 				onMouseEnter={() => localRive && localRive.play()}
 				onMouseLeave={() => localRive && localRive.pause()}
-				className="w-64 h-20"
+				className="w-64 h-20 mt-[-30px]"
 			/>
 		</div>
 	);
