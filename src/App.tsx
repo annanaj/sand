@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/react';
 import Animations from './components/Animations/Animations';
 import EmailForm from './components/EmailForm/EmailForm';
 import Keyframes from './components/Keyframes/Keyframes';
+import Notification from './components/Notification/Notification';
 import Player from './components/Player/Player';
 import UsersList from './components/UsersList/UsersList';
 import ShopItem from './components/ShopItem/ShopItem';
@@ -20,6 +21,7 @@ export default function App() {
 			{/*	Break the world*/}
 			{/*</button>*/}
 			<div className="mainContainer">
+				<Notification />
 				<Animations />
 				<Keyframes />
 				<UsersList />
