@@ -139,6 +139,10 @@ button {
 	min-width: 300px;
 }
 
+.mainContainer > *:last-child {
+	min-width: 400px;
+}
+
 .card-container {
 	width: 100%;
 	display: flex;

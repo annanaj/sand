@@ -54,7 +54,7 @@ export default function RepositoriesList({ owners }: RepositoriesProps) {
 	}
 
 	return (
-		<div className="grid grid-cols-2 gap-5">
+		<div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 			{Object.entries(repositories).map(([owner, repos]) => {
 				const ownerData = repos[0]?.owner;
 				const profileUrl = `https://github.com/${ownerData.login}`; // construct profile URL
