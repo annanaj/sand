@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-export default function ShopItem() {
+export default function ShopItem({ onBuy }) {
 	return (
 		<Card>
 			<CardHeader>
@@ -27,7 +27,9 @@ export default function ShopItem() {
 				<p>Step into the world of wonders in Super Mario Bros.</p>
 			</CardContent>
 			<CardFooter className="justify-center">
-				<Button aria-label="Buy this game">Buy this game</Button>
+				<Button aria-label="Buy this game" onClick={onBuy}>
+					Buy this game
+				</Button>
 			</CardFooter>
 		</Card>
 	);

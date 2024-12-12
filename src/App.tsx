@@ -9,17 +9,17 @@ import Notification from './components/Notification/Notification';
 import Player from './components/Player/Player';
 import UsersList from './components/UsersList/UsersList';
 import ShopItem from './components/ShopItem/ShopItem';
+import HigherOrder from './components/HigherOrder/HigherOrder';
 import RepositoriesList from './components/RepositoriesList/RepositoriesList';
 
 import './index.css';
 
 export default function App() {
+	const ShopItemWithCounter = HigherOrder(ShopItem);
+
 	return (
 		<Sentry.ErrorBoundary>
 			<h1 className="title spacingTop font-black">Sandbox</h1>
-			{/*<button className="mb-2 ml-2" onClick={() => methodDoesNotExist()}>*/}
-			{/*	Break the world*/}
-			{/*</button>*/}
 			<div className="mainContainer">
 				<Notification />
 				<Animations />
@@ -28,6 +28,7 @@ export default function App() {
 				<EmailForm />
 				<Player />
 				<ShopItem />
+				<ShopItemWithCounter />
 				<RepositoriesList
 					owners={['bradfrost', 'csswizardry', 'gaearon', 'LeaVerou']}
 				/>
