@@ -10,7 +10,11 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-export default function ShopItem({ onBuy }) {
+type ShopItemProps = {
+	onBuy?: () => void;
+};
+
+export default function ShopItem({ onBuy }: ShopItemProps) {
 	return (
 		<Card>
 			<CardHeader>
