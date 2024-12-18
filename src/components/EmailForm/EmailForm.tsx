@@ -1,75 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import MessageInput from './MessageInput';
+import EmailInput from './EmailInput';
+import useEmailSender from './useEmailSender';
 
 export default function EmailForm() {
+	const { sendEmail, statusMessage, isError } = useEmailSender();
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState('');
-	const [isError, setIsError] = useState(false);
-	const [statusMessage, setStatusMessage] = useState('');
 
-	const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		try {
-			const response = await fetch('http://localhost:5002/send-email', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email, message }),
-			});
-			if (response.ok) {
-				setStatusMessage('Email sent successfully!');
-				setIsError(false);
-				setEmail('');
-				setMessage('');
-			} else {
-				setStatusMessage('Error while sending the email. Go fix it.');
-				setIsError(true);
-			}
-		} catch (error) {
-			console.error('Error:', error);
-			setStatusMessage('Error while sending the email. Go fix it.');
-			setIsError(true);
-		}
+		sendEmail(email, message);
+		setEmail('');
+		setMessage('');
 	};
-
-	useEffect(() => {
-		if (statusMessage) {
-			const timer = setTimeout(() => {
-				setStatusMessage('');
-			}, 3000);
-
-			return () => clearTimeout(timer);
-		}
-	}, [statusMessage]);
 
 	return (
 		<div className="card-container items-center">
 			<h2 className="title">Send the email</h2>
-			<form onSubmit={sendEmail} className="form">
-				<label htmlFor="emailSent" className="visuallyHidden">
-					Email
-				</label>
-				<input
-					type="email"
-					id="emailSent"
-					placeholder="Email"
+			<form onSubmit={handleSubmit} className="form">
+				<EmailInput
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
-					aria-required="true"
-					aria-label="Email Address"
-					required
 				/>
-				<label htmlFor="emailMessage" className="visuallyHidden">
-					Email Message
-				</label>
-				<textarea
-					id="emailMessage"
-					placeholder="Write the message here"
+				<MessageInput
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
-					aria-required="true"
-					aria-label="Email Message"
-					required
 				/>
 				<Button type="submit" aria-label="Send email">
 					Send email
