@@ -1,0 +1,14 @@
+{
+	"Notification": {
+		"title": "Notifikační API",
+		"button": "Vyšli notifikaci",
+		"permission": "Současný stav povolení notifikací:",
+		"messageTitle": "Hej!",
+		"messageBody": "Tohle je jen testovní notifikace",
+		"denied": "Notifikace zamítnuty"
+	},
+	"Language": {
+		"en": "EN",
+		"cs": "CS"
+	}
+}

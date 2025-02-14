@@ -1,0 +1,14 @@
+{
+	"Notification": {
+		"title": "Notification API",
+		"button": "Show notification",
+		"permission": "Current permission status for notifications:",
+		"messageTitle": "Hey!",
+		"messageBody": "This is a test notification",
+		"denied": "Notifications were denied"
+	},
+	"Language": {
+		"en": "EN",
+		"cs": "CZ"
+	}
+}

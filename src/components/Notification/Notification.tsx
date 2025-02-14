@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { Button } from '@/components/ui/button';
 
 export default function Notification() {
+	const { t } = useTranslation();
+
 	const [permission, setPermission] = useState<NotificationPermission>(
 		window.Notification.permission
 	);
@@ -12,27 +16,28 @@ export default function Notification() {
 				setPermission(permission);
 
 				if (permission === 'granted') {
-					new window.Notification('Hello!', {
-						body: 'Toto je testovací notifikace.',
+					new window.Notification(t('Notification.messageTitle'), {
+						body: t('Notification.messageBody'),
 						icon: './../sand/logo.png',
 					});
 				} else {
-					console.log('Notifikace byly zamítnuty.');
+					console.log(t('Notification.denied'));
 				}
 			});
 		} else {
-			console.log('Notifikace byly zamítnuty.');
+			console.log(t('Notification.denied'));
 		}
 	};
 
 	return (
 		<div className="card-container items-center">
-			<h2 className="title">Notification API</h2>
+			<h2 className="title">{t('Notification.title')} </h2>
 			<Button id="notifyButton" type="button" onClick={showNotification}>
-				Show Notification
+				{t('Notification.button')}
 			</Button>
 			<div className="mt-5">
-				<p>Aktuální stav povolení pro notifikace: {permission}</p>
+				<p>{t('Notification.permission')}</p>
+				<p className="font-semibold text-center">{permission}</p>
 			</div>
 		</div>
 	);

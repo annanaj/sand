@@ -13,6 +13,8 @@ import HigherOrder from './components/HigherOrder/HigherOrder';
 import RepositoriesList from './components/RepositoriesList/RepositoriesList';
 
 import './index.css';
+import './i18n';
+import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 export default function App() {
 	const ShopItemWithCounter = HigherOrder(ShopItem);
@@ -21,6 +23,7 @@ export default function App() {
 		<Sentry.ErrorBoundary>
 			<h1 className="title spacingTop font-black">Sandbox</h1>
 			<div className="mainContainer">
+				<LanguageSwitcher />
 				<Notification />
 				<Animations />
 				<Keyframes />
