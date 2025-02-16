@@ -19,7 +19,7 @@ export function ThemeSwitcher() {
 		}),
 		menu: (provided) => ({
 			...provided,
-			marginTop: '0',
+			marginTop: '2px',
 		}),
 	};
 
@@ -30,7 +30,7 @@ export function ThemeSwitcher() {
 	};
 
 	return (
-		<div className="fixed top-12 right-2.5">
+		<div>
 			<Select
 				value={options.find((option) => option.value === theme)}
 				onChange={handleThemeChange}

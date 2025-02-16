@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
 		}),
 		menu: (provided) => ({
 			...provided,
-			marginTop: '0',
+			marginTop: '2px',
 		}),
 	};
 
@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
 	};
 
 	return (
-		<div className="fixed top-2 right-2">
+		<div>
 			<Select
 				value={options.find((option) => option.value === i18n.language)}
 				onChange={changeLanguage}

@@ -24,8 +24,10 @@ export default function App() {
 	return (
 		<Sentry.ErrorBoundary>
 			<ThemeProvider>
-				<LanguageSwitcher />
-				<ThemeSwitcher />
+				<div className="absolute top-2 right-2 flex flex-col gap-2">
+					<LanguageSwitcher />
+					<ThemeSwitcher />
+				</div>
 				<h1 className="title spacingTop font-black">Sandbox</h1>
 				<div className="mainContainer">
 					<Notification />
