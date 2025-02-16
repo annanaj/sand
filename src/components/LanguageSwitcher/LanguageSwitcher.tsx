@@ -15,6 +15,10 @@ export function LanguageSwitcher() {
 			...provided,
 			width: 80,
 		}),
+		menu: (provided) => ({
+			...provided,
+			marginTop: '0',
+		}),
 	};
 
 	const changeLanguage = (selectedOption: { value: string }) => {
@@ -27,6 +31,7 @@ export function LanguageSwitcher() {
 				value={options.find((option) => option.value === i18n.language)}
 				onChange={changeLanguage}
 				options={options}
+				menuPortalTarget={document.querySelector('body')}
 				components={{
 					IndicatorSeparator: () => null,
 				}}

@@ -8,14 +8,18 @@ export function ThemeSwitcher() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 
 	const options = [
-		{ value: 'light', label: <RxSun /> },
-		{ value: 'dark', label: <MdDarkMode /> },
+		{ value: 'light', label: <RxSun style={{ color: 'black' }} /> },
+		{ value: 'dark', label: <MdDarkMode style={{ color: 'black' }} /> },
 	];
 
 	const styles: StylesConfig = {
 		container: (provided) => ({
 			...provided,
 			width: 80,
+		}),
+		menu: (provided) => ({
+			...provided,
+			marginTop: '0',
 		}),
 	};
 
