@@ -4,7 +4,7 @@ type HigherOrderProps = {
 	onBuy?: () => void;
 };
 
-const HigherOrder = <P extends object>(
+export const HigherOrder = <P extends object>(
 	WrappedComponent: React.ComponentType<P>
 ) => {
 	return function WithCounterComponent(props: P & HigherOrderProps) {
@@ -26,5 +26,3 @@ const HigherOrder = <P extends object>(
 		);
 	};
 };
-
-export default HigherOrder;

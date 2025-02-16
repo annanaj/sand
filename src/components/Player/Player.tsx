@@ -7,7 +7,7 @@ import Video from '/short_video.mp4';
 
 import styles from './Player.module.scss';
 
-export default function Player() {
+export function Player() {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);

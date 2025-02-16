@@ -6,7 +6,7 @@ type RepositoriesProps = {
 	owners: string[];
 };
 
-export default function RepositoriesList({ owners }: RepositoriesProps) {
+export function RepositoriesList({ owners }: RepositoriesProps) {
 	const [repositories, setRepositories] = useState<
 		Record<string, Repository[]>
 	>({});

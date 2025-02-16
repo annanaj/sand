@@ -5,12 +5,7 @@ import { Button } from '@/components/ui/button';
 
 import styles from './UsersList.module.scss';
 
-import {
-	fetchUsers,
-	createUser,
-	updateUser,
-	deleteUser,
-} from '../../services/api';
+import { fetchUsers, createUser, updateUser, deleteUser } from '@/services/api';
 
 type UsersList = {
 	id: number;
@@ -18,7 +13,7 @@ type UsersList = {
 	email: string;
 };
 
-export default function UsersList() {
+export function UsersList() {
 	const [users, setUsers] = useState<UsersList[]>([]);
 	const [newUser, setNewUser] = useState({ name: '', email: '' });
 	const [nameError, setNameError] = useState('');

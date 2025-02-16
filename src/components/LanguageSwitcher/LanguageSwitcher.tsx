@@ -2,18 +2,18 @@ import React from 'react';
 import Select, { StylesConfig } from 'react-select';
 import { useTranslation } from 'react-i18next';
 
-export default function LanguageSwitcher() {
-	const { i18n, t } = useTranslation();
+export function LanguageSwitcher() {
+	const { i18n } = useTranslation();
 
 	const options = [
-		{ value: 'en', label: `🇬🇧 ${t('Language.en')}` },
-		{ value: 'cs', label: `🇨🇿 ${t('Language.cs')}` },
+		{ value: 'en', label: `🇬🇧` },
+		{ value: 'cs', label: `🇨🇿` },
 	];
 
 	const styles: StylesConfig = {
 		container: (provided) => ({
 			...provided,
-			width: 100,
+			width: 80,
 		}),
 	};
 
@@ -27,6 +27,9 @@ export default function LanguageSwitcher() {
 				value={options.find((option) => option.value === i18n.language)}
 				onChange={changeLanguage}
 				options={options}
+				components={{
+					IndicatorSeparator: () => null,
+				}}
 				styles={styles}
 			/>
 		</div>

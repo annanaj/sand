@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import Spinner from '../svg/spinner.svg';
 import styles from './Keyframes.module.scss';
 
-export default function Keyframes() {
+export function Keyframes() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 	// useEffect pro sledovani sirky okna a nasledne logiky

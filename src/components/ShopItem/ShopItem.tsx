@@ -14,7 +14,7 @@ type ShopItemProps = {
 	onBuy?: () => void;
 };
 
-export default function ShopItem({ onBuy }: ShopItemProps) {
+export function ShopItem({ onBuy }: ShopItemProps) {
 	return (
 		<Card>
 			<CardHeader>

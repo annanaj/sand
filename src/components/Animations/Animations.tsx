@@ -4,10 +4,10 @@ import checkmark from './checkmark.json';
 import hamburger from './hamburger.json';
 import { useRive } from '@rive-app/react-canvas';
 
-interface Interactivity {
+type Interactivity = {
 	mode: 'scroll' | 'cursor';
 	actions: Action[];
-}
+};
 
 const interactivity: Interactivity = {
 	mode: 'cursor', // nebo scroll
@@ -20,7 +20,7 @@ const interactivity: Interactivity = {
 	],
 };
 
-export default function Animations() {
+export function Animations() {
 	const { rive, RiveComponent } = useRive({
 		src: 'https://cdn.rive.app/animations/vehicles.riv',
 		autoplay: false,

@@ -5,14 +5,14 @@ import MessageInput from './MessageInput';
 import EmailInput from './EmailInput';
 import useEmailSender from './useEmailSender';
 
-export default function EmailForm() {
+export function EmailForm() {
 	const { sendEmail, statusMessage, isError } = useEmailSender();
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState('');
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		sendEmail(email, message);
+		void sendEmail(email, message);
 		setEmail('');
 		setMessage('');
 	};
