@@ -1,5 +1,5 @@
-import { gql, GraphQLClient } from 'graphql-request';
-import { Repository } from '@/types/repository';
+import { gql, GraphQLClient } from "graphql-request";
+import { Repository } from "@/types/repository";
 
 const GQL_GITHUB_TOKEN = process.env.GQL_GITHUB_TOKEN;
 
@@ -7,15 +7,18 @@ const GQL_GITHUB_TOKEN = process.env.GQL_GITHUB_TOKEN;
 // 	throw new Error('GitHub token not found in environment variables');
 // }
 
-const client = new GraphQLClient('https://api.github.com/graphql', {
-	headers: {
-		Authorization: `Bearer ${GQL_GITHUB_TOKEN}`,
-	},
-});
+const client = new GraphQLClient(
+  "https://api.github.com/graphql",
+  {
+    headers: {
+      Authorization: `Bearer ${GQL_GITHUB_TOKEN}`,
+    },
+  },
+);
 
 const createQuery = (owners: string[], first: number) => {
-	const ownerQueries = owners.map(
-		(owner, index) => `
+  const ownerQueries = owners.map(
+    (owner, index) => `
       user${index}: repositoryOwner(login: "${owner}") {
         repositories(first: ${first}, privacy: PUBLIC) {
           nodes {
@@ -39,73 +42,68 @@ const createQuery = (owners: string[], first: number) => {
           }
         }
       }
-    `
-	);
+    `,
+  );
 
-	return gql`
+  return gql`
     query GetRepositories {
-      ${ownerQueries.join('\n')}
+      ${ownerQueries.join("\n")}
     }
   `;
 };
 
 interface RepositoriesResponse {
-	[key: string]: {
-		repositories: {
-			nodes: Repository[];
-		};
-	};
+  [key: string]: {
+    repositories: {
+      nodes: Repository[];
+    };
+  };
 }
 
 export const getRepositoriesForMultipleUsers = async (
-	owners: string[],
-	first: number = 10
+  owners: string[],
+  first: number = 10,
 ): Promise<Record<string, Repository[]>> => {
-	try {
-		// Log the query to check if it's correctly formed
-		console.log('Executing query for owners:', owners);
-		const query = createQuery(owners, first);
-		console.log('Generated query:', query);
+  try {
+    // Log the query to check if it's correctly formed
+    const query = createQuery(owners, first);
 
-		// Perform the request
-		const data: RepositoriesResponse =
-			await client.request<RepositoriesResponse>(query);
+    // Perform the request
+    const data: RepositoriesResponse =
+      await client.request<RepositoriesResponse>(query);
 
-		// Log the raw data response for debugging
-		console.log('Received data:', data);
+    // Check if the response structure is as expected
+    return owners.reduce(
+      (acc, owner, index) => {
+        const userKey = `user${index}`;
 
-		// Check if the response structure is as expected
-		return owners.reduce(
-			(acc, owner, index) => {
-				const userKey = `user${index}`;
+        // Log if the expected user key doesn't exist in the response
+        if (!data[userKey]) {
+          console.error(
+            `No data found for user: ${owner} (key: ${userKey})`,
+          );
+          return acc;
+        }
 
-				// Log if the expected user key doesn't exist in the response
-				if (!data[userKey]) {
-					console.error(
-						`No data found for user: ${owner} (key: ${userKey})`
-					);
-					return acc;
-				}
+        // Log if repositories or nodes are missing
+        if (
+          !data[userKey].repositories ||
+          !data[userKey].repositories.nodes
+        ) {
+          console.error(
+            `Repositories not found for user: ${owner} (key: ${userKey})`,
+          );
+          return acc;
+        }
 
-				// Log if repositories or nodes are missing
-				if (
-					!data[userKey].repositories ||
-					!data[userKey].repositories.nodes
-				) {
-					console.error(
-						`Repositories not found for user: ${owner} (key: ${userKey})`
-					);
-					return acc;
-				}
-
-				acc[owner] = data[userKey].repositories.nodes;
-				return acc;
-			},
-			{} as Record<string, Repository[]>
-		);
-	} catch (error: unknown) {
-		// Log the complete error object for more details
-		console.error('Error fetching repositories:', error);
-		return {};
-	}
+        acc[owner] = data[userKey].repositories.nodes;
+        return acc;
+      },
+      {} as Record<string, Repository[]>,
+    );
+  } catch (error: unknown) {
+    // Log the complete error object for more details
+    console.error("Error fetching repositories:", error);
+    return {};
+  }
 };

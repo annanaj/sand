@@ -1,0 +1,4 @@
+components.json
+tsconfig.json
+spec/E2E/features/*.feature.spec.js
+src/routeTree.gen.ts

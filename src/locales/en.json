@@ -2,7 +2,7 @@
 	"Notification": {
 		"title": "Notification API",
 		"button": "Show notification",
-		"permission": "Current permission status for notifications:",
+		"permission": "Current permission status:",
 		"messageTitle": "Hey!",
 		"messageBody": "This is a test notification",
 		"denied": "Notifications were denied"
