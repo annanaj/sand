@@ -16,7 +16,11 @@ vi.mock("@/services/api", () => ({
 
 describe("UsersList Component", () => {
   it("renders the form inputs and Add User button", () => {
-    render(<ThemeProvider><UsersList /></ThemeProvider>);
+    render(
+      <ThemeProvider>
+        <UsersList />
+      </ThemeProvider>,
+    );
 
     // Check for form elements
     expect(
@@ -33,7 +37,11 @@ describe("UsersList Component", () => {
   });
 
   it("handles typing into the name input", () => {
-    render(<ThemeProvider><UsersList /></ThemeProvider>);
+    render(
+      <ThemeProvider>
+        <UsersList />
+      </ThemeProvider>,
+    );
 
     const nameInput =
       screen.getByPlaceholderText("Full name");
