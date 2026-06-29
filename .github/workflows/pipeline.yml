@@ -16,36 +16,36 @@ jobs:
                   node-version: 20.x
 
             - name: Install dependencies
-              run: yarn install
+              run: npm install -g pnpm && pnpm install
 
             - name: TypeScript Check
-              run: yarn tsc
-              
+              run: pnpm tsc
+
             - name: Lint with Eslint
-              run: yarn lint
+              run: pnpm lint
 
             - name: Run Tests
-              run: yarn test
+              run: pnpm test --run
 
             - name: Build project
-              run: yarn build
+              run: GQL_GITHUB_TOKEN= pnpm run build
               env:
                   EMAIL_USER: ${{ secrets.EMAIL_USER }}
                   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-                  
+
             - name: Upload production-ready build files
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                 name: production-files
                 path: ./dist
-    
+
     deploy:
         needs: build
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main'
         steps:
             - name: Download artifact
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                   name: production-files
                   path: ./dist
