@@ -5,17 +5,18 @@ import {
   fireEvent,
 } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import UsersList from "../components/UsersList/UsersList";
+import { UsersList } from "../components/UsersList/UsersList";
+import { ThemeProvider } from "../components/ThemeProvider";
 import "@testing-library/jest-dom";
 
 // Mock the fetchUsers API call
-vi.mock("../../services/api", () => ({
+vi.mock("@/services/api", () => ({
   fetchUsers: vi.fn().mockResolvedValue({ data: [] }),
 }));
 
 describe("UsersList Component", () => {
   it("renders the form inputs and Add User button", () => {
-    render(<UsersList />);
+    render(<ThemeProvider><UsersList /></ThemeProvider>);
 
     // Check for form elements
     expect(
@@ -32,7 +33,7 @@ describe("UsersList Component", () => {
   });
 
   it("handles typing into the name input", () => {
-    render(<UsersList />);
+    render(<ThemeProvider><UsersList /></ThemeProvider>);
 
     const nameInput =
       screen.getByPlaceholderText("Full name");
