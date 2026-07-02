@@ -8,11 +8,25 @@ function DiscordLogin() {
   const authUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=identify email`;
 
   return (
-    <div className="card-container items-center gap-2">
-      <h2 className="title">Login with Discord</h2>
-      <a href={authUrl}>
-        <Button>Login with Discord</Button>
-      </a>
+    <div className="card-container flex items-center gap-2">
+      <div className="flex-1">
+        <h2 className="title">Login with Discord</h2>
+        <Button asChild className="flex justify-content">
+          <a href={authUrl}>Login with Discord</a>
+        </Button>
+      </div>
+      <div>
+        <h2 className="title mt-auto">Sentry</h2>
+        <Button
+          variant="warning"
+          onClick={() => {
+            throw new Error("Test Sentry error 🔥");
+          }}
+          className="mb-8"
+        >
+          Hoď testovací chybu
+        </Button>
+      </div>
     </div>
   );
 }

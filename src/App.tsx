@@ -6,7 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import ReactGA from "react-ga4";
-// import * as Sentry from '@sentry/react';
+import * as Sentry from "@sentry/react";
 
 import "./index.css";
 import "./i18n";
@@ -78,24 +78,26 @@ function RouteTracker() {
 
 export default function App() {
   return (
-    // <Sentry.ErrorBoundary>
-    <ThemeProvider>
-      <Router>
-        <RouteTracker />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/sand" element={<HomePage />} />
-          <Route
-            path="/sand/callback"
-            element={<DiscordCallback />}
-          />
-          <Route
-            path="/sand/logged"
-            element={<LoggedIn />}
-          />
-        </Routes>
-      </Router>
-    </ThemeProvider>
-    // </Sentry.ErrorBoundary>
+    <Sentry.ErrorBoundary
+      fallback={<p>Sonething went wrong...</p>}
+    >
+      <ThemeProvider>
+        <Router>
+          <RouteTracker />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/sand" element={<HomePage />} />
+            <Route
+              path="/sand/callback"
+              element={<DiscordCallback />}
+            />
+            <Route
+              path="/sand/logged"
+              element={<LoggedIn />}
+            />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </Sentry.ErrorBoundary>
   );
 }
