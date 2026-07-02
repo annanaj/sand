@@ -7,6 +7,9 @@
 		"messageBody": "Tohle je jen testovní notifikace",
 		"denied": "Notifikace zamítnuty"
 	},
+	"Sentry": {
+		"throwButton": "Hoď testovací chybu"
+	},
 	"Language": {
 		"en": "EN",
 		"cs": "CS"

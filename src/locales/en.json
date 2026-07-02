@@ -7,6 +7,9 @@
 		"messageBody": "This is a test notification",
 		"denied": "Notifications were denied"
 	},
+	"Sentry": {
+		"throwButton": "Throw test error"
+	},
 	"Language": {
 		"en": "EN",
 		"cs": "CZ"
