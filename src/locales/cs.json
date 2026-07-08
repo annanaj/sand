@@ -8,7 +8,17 @@
 		"denied": "Notifikace zamítnuty"
 	},
 	"Sentry": {
+		"title": "Sentry",
 		"throwButton": "Hoď testovací chybu"
+	},
+	"DiscordLogin": {
+		"title": "Přihlášení přes Discord",
+		"button": "Přihlásit přes Discord"
+	},
+	"Animations": {
+		"badgeActive": "Aktivní",
+		"lottieTitle": "Lottie hotové animace",
+		"riveTitle": "Rive vlastní animace"
 	},
 	"Language": {
 		"en": "EN",

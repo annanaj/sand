@@ -2,8 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 
-const clientId = "1361263425111720097"; // tvůj Client ID
-const redirectUri = "http://localhost:5173/sand/callback"; // správná redirect URL
+const clientId = "1361263425111720097"; // your Client ID
+const redirectUri = "http://localhost:5173/sand/callback"; // correct redirect URL
 
 function DiscordLogin() {
   const { t } = useTranslation();
@@ -12,13 +12,15 @@ function DiscordLogin() {
   return (
     <div className="card-container flex items-center gap-2">
       <div className="flex-1">
-        <h2 className="title">Login with Discord</h2>
+        <h2 className="title">{t("DiscordLogin.title")}</h2>
         <Button asChild className="flex justify-content">
-          <a href={authUrl}>Login with Discord</a>
+          <a href={authUrl}>{t("DiscordLogin.button")}</a>
         </Button>
       </div>
       <div>
-        <h2 className="title mt-auto">Sentry</h2>
+        <h2 className="title mt-auto">
+          {t("Sentry.title")}
+        </h2>
         <Button
           variant="warning"
           onClick={() => {

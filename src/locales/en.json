@@ -8,7 +8,17 @@
 		"denied": "Notifications were denied"
 	},
 	"Sentry": {
+		"title": "Sentry",
 		"throwButton": "Throw test error"
+	},
+	"DiscordLogin": {
+		"title": "Login with Discord",
+		"button": "Login with Discord"
+	},
+	"Animations": {
+		"badgeActive": "Active",
+		"lottieTitle": "Lottie pre-made",
+		"riveTitle": "Rive creations"
 	},
 	"Language": {
 		"en": "EN",

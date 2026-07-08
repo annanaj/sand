@@ -3,6 +3,7 @@ import Lottie, { Action } from "lottie-react";
 import checkmark from "./checkmark.json";
 import hamburger from "./hamburger.json";
 import { useRive } from "@rive-app/react-canvas";
+import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/Badge/Badge";
 
 type Interactivity = {
@@ -22,6 +23,7 @@ const interactivity: Interactivity = {
 };
 
 export function Animations() {
+  const { t } = useTranslation();
   const { rive, RiveComponent } = useRive({
     src: "https://cdn.rive.app/animations/vehicles.riv",
     autoplay: false,
@@ -43,10 +45,14 @@ export function Animations() {
     <div className="card-container items-center">
       <Badge variant="active">
         <Badge.Dot />
-        <Badge.Label>Aktivní</Badge.Label>
+        <Badge.Label>
+          {t("Animations.badgeActive")}
+        </Badge.Label>
       </Badge>
 
-      <h2 className="title">Lottie pre/made</h2>
+      <h2 className="title">
+        {t("Animations.lottieTitle")}
+      </h2>
       <div className="flex gap-3 items-center">
         <Lottie
           animationData={checkmark}
@@ -64,7 +70,7 @@ export function Animations() {
         />
       </div>
 
-      <h2 className="title">Rive creations</h2>
+      <h2 className="title">{t("Animations.riveTitle")}</h2>
       <RiveComponent
         onMouseEnter={() => rive && rive.play()}
         onMouseLeave={() => rive && rive.pause()}
