@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getRepositoriesForMultipleUsers } from "@/graphql/gql";
-import { Repository } from "@/types/repository";
+import type { Repository } from "@/types/repository";
 
 type RepositoriesProps = {
   owners: string[];
@@ -62,6 +62,9 @@ export function RepositoriesList({
       {Object.entries(repositories).map(
         ([owner, repos]) => {
           const ownerData = repos[0]?.owner;
+          if (!ownerData) {
+            return null;
+          }
           const profileUrl = `https://github.com/${ownerData.login}`; // construct profile URL
 
           return (

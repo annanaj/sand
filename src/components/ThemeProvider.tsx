@@ -1,7 +1,7 @@
 import React, {
   createContext,
   useState,
-  ReactNode,
+  type ReactNode,
 } from "react";
 
 type ThemeContextType = {

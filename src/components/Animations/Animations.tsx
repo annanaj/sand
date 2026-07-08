@@ -1,5 +1,5 @@
 import React from "react";
-import Lottie, { Action } from "lottie-react";
+import Lottie, { type Action } from "lottie-react";
 import checkmark from "./checkmark.json";
 import hamburger from "./hamburger.json";
 import { useRive } from "@rive-app/react-canvas";

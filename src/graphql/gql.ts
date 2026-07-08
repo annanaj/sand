@@ -1,5 +1,5 @@
 import { gql, GraphQLClient } from "graphql-request";
-import { Repository } from "@/types/repository";
+import type { Repository } from "@/types/repository";
 
 const GQL_GITHUB_TOKEN = process.env.GQL_GITHUB_TOKEN;
 

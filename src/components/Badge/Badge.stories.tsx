@@ -9,6 +9,9 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  args: {
+    variant: "active",
+  },
   argTypes: {
     variant: {
       control: "select",

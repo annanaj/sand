@@ -12,7 +12,7 @@ export function Encryption() {
   };
 
   // funkce pro získání šifrovacího klíče z hesla a náhodného saltu (dalsi bezpečnostní prvek)
-  const getKey = async (salt: Uint8Array) => {
+  const getKey = async (salt: BufferSource) => {
     const password = "secret-key"; // pevně zadané heslo
     const enc = new TextEncoder().encode(password);
 
@@ -68,7 +68,6 @@ export function Encryption() {
 
     // převedeme zašifrovaná data na base64 pro uložení
     const encryptedBase64 = btoa(
-      // @ts-expect-error: Uint8Array spread vyžaduje --downlevelIteration
       String.fromCharCode(...new Uint8Array(encrypted)),
     );
 

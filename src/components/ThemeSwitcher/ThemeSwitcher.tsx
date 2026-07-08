@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
-import Select, { StylesConfig } from "react-select";
+import Select, { type StylesConfig } from "react-select";
 import { ThemeContext } from "./../ThemeProvider";
 import { RxSun } from "react-icons/rx";
 import { MdDarkMode } from "react-icons/md";
 
-export function ThemeSwitcher() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+type ThemeOption = {
+  value: string;
+  label: React.ReactElement;
+};
 
-  const options = [
+export function ThemeSwitcher() {
+  // ThemeSwitcher is always rendered inside ThemeProvider,
+  // so the context value is never null at runtime
+  const { theme, toggleTheme } = useContext(ThemeContext)!;
+
+  const options: ThemeOption[] = [
     {
       value: "light",
       label: <RxSun style={{ color: "black" }} />,
@@ -18,7 +25,7 @@ export function ThemeSwitcher() {
     },
   ];
 
-  const styles: StylesConfig = {
+  const styles: StylesConfig<ThemeOption, false> = {
     container: (provided) => ({
       ...provided,
       width: 80,
@@ -29,10 +36,10 @@ export function ThemeSwitcher() {
     }),
   };
 
-  const handleThemeChange = (selectedOption: {
-    value: string;
-  }) => {
-    if (selectedOption.value !== theme) {
+  const handleThemeChange = (
+    selectedOption: ThemeOption | null,
+  ) => {
+    if (selectedOption && selectedOption.value !== theme) {
       toggleTheme();
     }
   };

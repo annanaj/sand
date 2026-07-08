@@ -4,7 +4,10 @@ export default function useEmailSender() {
   const [statusMessage, setStatusMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const sendEmail = async (email, message) => {
+  const sendEmail = async (
+    email: string,
+    message: string,
+  ) => {
     try {
       const response = await fetch(
         "http://localhost:5002/send-email",
