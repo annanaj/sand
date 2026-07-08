@@ -1,52 +1,13 @@
 {
-	/* For shadcn: */
 	"files": [],
 	"references": [
-		{
-			"path": "./tsconfig.app.json"
-		}
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.node.json" }
 	],
+	/* shadcn CLI resolvuje aliasy z root tsconfigu: */
 	"compilerOptions": {
-		/* Base Options: */
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"target": "es2022",
-		"importHelpers": true,
-		"allowJs": true,
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"verbatimModuleSyntax": true,
-		"incremental": true,
-		"tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
-
-		/* Strictness */
-		"strict": true,
-		"noUncheckedIndexedAccess": true,
-		"noImplicitOverride": true,
-
-		/* If transpiling with TypeScript: */
-		"module": "es2022",
-		"moduleResolution": "bundler",
-		"outDir": "./dist",
-		"sourceMap": true,
-
-		/* AND if you're building for a library: */
-		"declaration": true,
-
-		/* AND if you're building for a library in a monorepo: */
-		"composite": true,
-		"declarationMap": true,
-
-		/* If your code runs in the DOM: */
-		"lib": ["es2022", "dom", "dom.iterable"],
-		"jsx": "react",
-
-		/* For shadcn (path entries resolve relative to this tsconfig, no baseUrl needed): */
 		"paths": {
 			"@/*": ["./src/*"]
-		},
-
-		/* For svgr: */
-		"types": ["vite-plugin-svgr/client"]
-	},
+		}
+	}
 }
