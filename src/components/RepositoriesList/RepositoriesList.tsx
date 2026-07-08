@@ -14,7 +14,10 @@ export function RepositoriesList({
   const [repositories, setRepositories] = useState<
     Record<string, Repository[]>
   >({});
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{
+    key: string;
+    message?: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,21 +29,17 @@ export function RepositoriesList({
         if (Object.keys(repoData).length > 0) {
           setRepositories(repoData);
         } else {
-          setError(t("RepositoriesList.noRepositories"));
+          setError({
+            key: "RepositoriesList.noRepositories",
+          });
         }
-      } catch (error) {
-        console.error(
-          "Error fetching repositories:",
-          error,
-        );
-        setError(
-          t("RepositoriesList.fetchError", {
-            message:
-              error instanceof Error
-                ? error.message
-                : t("RepositoriesList.unknownError"),
-          }),
-        );
+      } catch (err) {
+        console.error("Error fetching repositories:", err);
+        setError({
+          key: "RepositoriesList.fetchError",
+          message:
+            err instanceof Error ? err.message : undefined,
+        });
       } finally {
         setLoading(false);
       }
@@ -59,7 +58,13 @@ export function RepositoriesList({
         <h2 className="font-bold">
           {t("RepositoriesList.errorTitle")}
         </h2>
-        <p>{error}</p>
+        <p>
+          {t(error.key, {
+            message:
+              error.message ??
+              t("RepositoriesList.unknownError"),
+          })}
+        </p>
       </div>
     );
   }
