@@ -1,4 +1,3 @@
-import React from "react";
 import Select, { type StylesConfig } from "react-select";
 import { useTranslation } from "react-i18next";
 

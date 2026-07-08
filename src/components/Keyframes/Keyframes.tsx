@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ImSpinner9 } from "react-icons/im";
 import { Button } from "@/components/ui/button";

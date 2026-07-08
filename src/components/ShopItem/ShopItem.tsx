@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import SuperMario from "../svg/supermario.svg";
 import HomeIcon from "../svg/home.svg";

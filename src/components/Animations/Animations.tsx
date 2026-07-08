@@ -1,4 +1,3 @@
-import React from "react";
 import Lottie, { type Action } from "lottie-react";
 import checkmark from "./checkmark.json";
 import hamburger from "./hamburger.json";
