@@ -9,21 +9,21 @@ export function Keyframes() {
     window.innerWidth,
   );
 
-  // useEffect pro sledovani sirky okna a nasledne logiky
+  // useEffect for tracking window width and the follow-up logic
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    // pridani event listeneru
+    // add the event listener
     window.addEventListener("resize", handleResize);
-    // cleanup funkce při unmountu komponenty
+    // cleanup function on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  // prazdny dependency array tj effect probehne jen pri 1.renderu
-  // zmenu zajistuje sam handler handleresize, kdybysme dali do deps treba windowWidth
-  // byl by to loop infinite
+  // empty dependency array, i.e. the effect runs only on the first render
+  // updates are handled by the handleResize handler itself; if we put e.g. windowWidth
+  // into deps, it would be an infinite loop
 
   return (
     <div className="card-container items-center">

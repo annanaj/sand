@@ -20,11 +20,11 @@ const transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
 		user: process.env.EMAIL_USER,
-		pass: process.env.EMAIL_PASS, // app specific pwd pro dany google account
+		pass: process.env.EMAIL_PASS, // app-specific pwd for the given Google account
 	},
 });
 
-// endpoint pro post na odesílání emailů
+// POST endpoint for sending emails
 app.post('/send-email', (req, res) => {
 	const { email, message } = req.body;
 	const htmlTemplate = emailTemplate(message);
@@ -37,7 +37,7 @@ app.post('/send-email', (req, res) => {
 			{
 				filename: 'logo.png',
 				path: path.join(__dirname, '..', 'public', 'logo.png'),
-				cid: 'logo@cid', // CID pro html templatu, base64 prevod nefunguje
+				cid: 'logo@cid', // CID for the HTML template, base64 conversion does not work
 			},
 		],
 	};

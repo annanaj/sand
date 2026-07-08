@@ -4,17 +4,17 @@ import cors from 'cors';
 
 const app = express();
 
-// BE server (pres Express, requesty na /discord/callback) přijme kód od fe aplikace,
-// pošle ho na Discord a vrátí přístupový token na FE.
+// BE server (via Express, requests to /discord/callback) receives the code from the FE app,
+// sends it to Discord and returns the access token to the FE.
 
-// server pustit pres terminal a node, node api/serverAuth.js
+// run the server via terminal and node: node api/serverAuth.js
 
 app.use(cors({
-	origin: 'http://localhost:5173', // URL frontendového serveru
+	origin: 'http://localhost:5173', // frontend server URL
 	methods: ['POST'],
-	credentials: true, // pokud používáš cookies nebo jiné autorizace
+	credentials: true, // if you use cookies or other authorization
 }));
-app.use(express.json()); // Pro příjem JSON dat
+app.use(express.json()); // For receiving JSON data
 
 // Discord OAuth2 parametry
 const clientId = '1361263425111720097'; // Discord Developer Portal
@@ -23,7 +23,7 @@ const redirectUri = 'http://localhost:5173/sand/callback'; // Discord Developer 
 
 app.post('/discord/callback', async (req, res) => {
 	const { code } = req.body;
-	console.log('Received code:', code); // ✅ Ujisti se, že dostáváš správný kód.
+	console.log('Received code:', code); // ✅ Make sure you receive the correct code.
 
 	if (!code) {
 		return res.status(400).send('Missing authorization code');
@@ -47,12 +47,12 @@ app.post('/discord/callback', async (req, res) => {
 			}
 		);
 
-		console.log('Discord response:', response.data); // ✅ Zkontroluj, že dostáváš response s `access_token`.
+		console.log('Discord response:', response.data); // ✅ Check that you receive a response with `access_token`.
 
 		const accessToken = response.data.access_token;
-		console.log('Sending access token to frontend:', accessToken); // ✅ Zkontroluj, že posíláš správný `access_token`.
+		console.log('Sending access token to frontend:', accessToken); // ✅ Check that you send the correct `access_token`.
 
-		res.json({ accessToken }); // Odesíláme access token na frontend
+		res.json({ accessToken }); // Send the access token to the frontend
 	} catch (error) {
 		console.error('Error exchanging code for token:', error?.response?.data || error);
 		res.status(500).send('Internal Server Error');

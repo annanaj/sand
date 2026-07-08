@@ -12,7 +12,7 @@ type Interactivity = {
 };
 
 const interactivity: Interactivity = {
-  mode: "cursor", // nebo scroll
+  mode: "cursor", // or scroll
   actions: [
     {
       position: { x: [0, 1], y: [0, 1] },

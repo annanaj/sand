@@ -8,7 +8,7 @@ import {
 import { useLocation } from "react-router-dom";
 
 const LoggedIn = () => {
-  // Můžeš použít useLocation pro získání uživatelských informací, pokud je předáváš jako state
+  // You can use useLocation to get the user info if you pass it as state
   const location = useLocation();
   const userInfo = location.state?.userInfo;
 
@@ -16,17 +16,17 @@ const LoggedIn = () => {
     <Card>
       <CardHeader>
         <CardTitle className="title">
-          Jsem logged in přes Discord
+          I am logged in via Discord
         </CardTitle>
       </CardHeader>
       <CardContent>
         {userInfo ? (
           <div className="flex flex-col items-center justify-center">
-            <p>a muj email je:</p>
+            <p>and my email is:</p>
             <p>{userInfo.email}</p>
           </div>
         ) : (
-          <p>Načítání informací o uživatelském účtu...</p>
+          <p>Loading user account info...</p>
         )}
       </CardContent>
     </Card>

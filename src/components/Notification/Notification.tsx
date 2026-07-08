@@ -11,7 +11,7 @@ export function Notification() {
     );
   const showNotification = () => {
     if (window.Notification.permission === "granted") {
-      // už povoleno – rovnou zobrazíme notifikaci
+      // already allowed - show the notification right away
       new window.Notification(
         t("Notification.messageTitle"),
         {
@@ -20,7 +20,7 @@ export function Notification() {
         },
       );
     } else {
-      // požádáme o oprávnění a případně zobrazíme
+      // ask for permission and show the notification if granted
       window.Notification.requestPermission().then(
         (permission) => {
           setPermission(permission);

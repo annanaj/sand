@@ -2,23 +2,23 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// pro zpracovani odpovědi od Discordu. Když uživatel klikne na tlačítko pro přihlášení
-// a Discord ho přesměruje zpět na moji stránku (/discord/callback), ziskam autorizační kód.
-// V této komponentě odeslu kód na muj backend pro výměnu za access token.
-// Tato komponenta se aktivuje při přesměrování uživatele zpět
-// na http://localhost:3000/discord/callback, získá autorizační kód, pošle ho
-// na backend pro výměnu za přístupový token a následně získá informace
-// o uživatelském účtu z Discordu
+// Handles the response from Discord. When the user clicks the login button
+// and Discord redirects them back to my page (/discord/callback), I get an authorization code.
+// In this component I send the code to my backend to exchange it for an access token.
+// This component activates when the user is redirected back
+// to http://localhost:3000/discord/callback, gets the authorization code, sends it
+// to the backend to exchange it for an access token, and then fetches
+// the user account info from Discord.
 
 const DiscordCallback = () => {
   const [, setUserInfo] = useState(null);
   const [, setAccessToken] = useState(null);
-  const hasFetched = useRef(false); // Flag pro zabránění opakovanému volání
+  const hasFetched = useRef(false); // Flag to prevent repeated calls
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (hasFetched.current) return; // Pokud už jsme jednou volali, nevoláme znova
+    if (hasFetched.current) return; // If we already called once, do not call again
     hasFetched.current = true;
 
     const fetchToken = async () => {
@@ -26,10 +26,10 @@ const DiscordCallback = () => {
         location.search,
       );
       const code = queryParams.get("code");
-      console.log("Code from URL:", code); // ✅ Ujisti se, že dostáváš kód
+      console.log("Code from URL:", code); // ✅ Make sure you receive the code
 
       try {
-        // Pošli autorizační kód na backend
+        // Send the authorization code to the backend
         const response = await axios.post(
           "http://localhost:3001/discord/callback",
           { code },
@@ -37,34 +37,34 @@ const DiscordCallback = () => {
         console.log(
           "Received data from backend:",
           response.data,
-        ); // ✅ Zkontroluj, že dostáváš accessToken.
+        ); // ✅ Check that you receive the accessToken.
 
-        const { accessToken } = response.data; // Destrukturalizuj accessToken z odpovědi
+        const { accessToken } = response.data; // Destructure accessToken from the response
 
         if (!accessToken) {
           console.error("Access token not received!");
           return;
         }
 
-        setAccessToken(accessToken); // Uložení access tokenu
-        console.log("Access Token:", accessToken); // ✅ Ujisti se, že máš platný token
+        setAccessToken(accessToken); // Store the access token
+        console.log("Access Token:", accessToken); // ✅ Make sure you have a valid token
 
-        // Zavoláme Discord API pro získání informací o uživatelském účtu
+        // Call the Discord API to get the user account info
         const userResponse = await axios.get(
           "https://discord.com/api/v10/users/@me",
           {
             headers: {
-              Authorization: `Bearer ${accessToken}`, // Pošleme Bearer token pro ověření
+              Authorization: `Bearer ${accessToken}`, // Send the Bearer token for verification
             },
           },
         );
 
         console.log("User info:", userResponse.data);
-        setUserInfo(userResponse.data); // Ulož informace o uživatelském účtu
+        setUserInfo(userResponse.data); // Store the user account info
 
-        // presmeruj na routu
+        // redirect to the route
         navigate("/sand/logged", {
-          state: { userInfo: userResponse.data }, // Předání uživatelských informací
+          state: { userInfo: userResponse.data }, // Pass along the user info
         });
       } catch (error) {
         console.error(

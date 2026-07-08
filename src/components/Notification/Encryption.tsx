@@ -11,12 +11,12 @@ export function Encryption() {
     setInput(e.target.value);
   };
 
-  // funkce pro získání šifrovacího klíče z hesla a náhodného saltu (dalsi bezpečnostní prvek)
+  // function to derive the encryption key from a password and a random salt (an extra security element)
   const getKey = async (salt: BufferSource) => {
-    const password = "secret-key"; // pevně zadané heslo
+    const password = "secret-key"; // hardcoded password
     const enc = new TextEncoder().encode(password);
 
-    // vytvoření keyMaterial z hesla
+    // create keyMaterial from the password
     const keyMaterial =
       await window.crypto.subtle.importKey(
         "raw",
@@ -26,7 +26,7 @@ export function Encryption() {
         ["deriveKey"],
       );
 
-    // derivace šifrovacího klíče pomocí salt
+    // derive the encryption key using the salt
     return await window.crypto.subtle.deriveKey(
       {
         name: "PBKDF2",
@@ -41,11 +41,11 @@ export function Encryption() {
     );
   };
 
-  // šifrování a uložení dat
+  // encrypt and store the data
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // vygenerujeme náhodné IV a salt (musí být jiné pro každé šifrování)
+    // generate a random IV and salt (must be different for every encryption)
     const iv = window.crypto.getRandomValues(
       new Uint8Array(12),
     );
@@ -53,25 +53,25 @@ export function Encryption() {
       new Uint8Array(16),
     );
 
-    // získáme šifrovací klíč z hesla a aktuálního saltu
+    // get the encryption key from the password and the current salt
     const key = await getKey(salt);
 
     const encoder = new TextEncoder();
     const data = encoder.encode(input);
 
-    // samotné šifrování
+    // the actual encryption
     const encrypted = await window.crypto.subtle.encrypt(
       { name: "AES-GCM", iv },
       key,
       data,
     );
 
-    // převedeme zašifrovaná data na base64 pro uložení
+    // convert the encrypted data to base64 for storage
     const encryptedBase64 = btoa(
       String.fromCharCode(...new Uint8Array(encrypted)),
     );
 
-    // uložíme data, IV a salt do localStorage
+    // store the data, IV and salt in localStorage
     localStorage.setItem("encryptedData", encryptedBase64);
     localStorage.setItem(
       "iv",
@@ -82,11 +82,11 @@ export function Encryption() {
       JSON.stringify(Array.from(salt)),
     );
 
-    // vyčistíme vstup
+    // clear the input
     setInput("");
   };
 
-  // dešifrování uložených dat
+  // decrypt the stored data
   const handleDecrypt = async () => {
     const encryptedBase64 =
       localStorage.getItem("encryptedData");

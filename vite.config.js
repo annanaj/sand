@@ -36,49 +36,49 @@ export default defineConfig(({ mode }) => {
     server: {
       headers: {
         "Content-Security-Policy": [
-          // Zaklad fallback pravidlo - pokud něco není explicitně povolené jinde, defaultně se povolí jen zdroje ze stejného webu
+          // Base fallback rule - anything not explicitly allowed elsewhere defaults to same-origin sources only
           "default-src 'self'",
 
-          // unsafe-inline = dovolí inline <script> (např. starší knihovny, Vite dev)
-          // unsafe-eval = dovolí eval (některé bundlery, dev tooling)
+          // unsafe-inline = allows inline <script> (e.g. older libraries, Vite dev)
+          // unsafe-eval = allows eval (some bundlers, dev tooling)
           // googletagmanager = Google Analytics / GTM script loader
           "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
 
-          // Network requests (fetch, axios, gh) - bez toho by nefungoval GitHub API ani backend
+          // Network requests (fetch, axios, gh) - without this the GitHub API and backend would not work
           "connect-src 'self' http://localhost:5001 http://localhost:5173 https://api.github.com https://www.googletagmanager.com https://unpkg.com https://cdn.jsdelivr.net https://cdn.rive.app https://region1.google-analytics.com https://www.google-analytics.com https://o4508092745646080.ingest.de.sentry.io",
 
-          // CSS styly
-          // unsafe-inline = nutné pro Vite, styled-components, některé UI knihovny
+          // CSS styles
+          // unsafe-inline = required for Vite, styled-components, some UI libraries
           // fonts.googleapis.com = Google Fonts CSS
           "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 
-          // Fonty - fonts.gstatic.com = Google Fonts samotné font soubory
+          // Fonts - fonts.gstatic.com = the actual Google Fonts font files
           "font-src 'self' https://fonts.gstatic.com",
 
-          // Obrázky - data: = inline base64 obrázky, https: = všechny HTTPS obrázky (např. GitHub avatars, CDN obrázky)
+          // Images - data: = inline base64 images, https: = all HTTPS images (e.g. GitHub avatars, CDN images)
           "img-src 'self' data: https:",
 
-          // iframe / embed, DENY je už nahoře X-Frame-Options, ale CSP frame-src je ještě extra kontrola
+          // iframe / embed, DENY is already set above via X-Frame-Options, but CSP frame-src is an extra check
           "frame-src 'self'",
 
-          // Sentry Replay worker běží jako blob: worker
+          // Sentry Replay worker runs as a blob: worker
           "worker-src 'self' blob:",
         ].join("; "),
 
-        // proti embedování stránky do iframe (clickjacking ochrana)
+        // enforce HTTPS (HSTS)
         "Strict-Transport-Security":
           "max-age=63072000; includeSubDomains; preload",
 
-        // proti MIME sniffingu - zabrání tomu, aby prohlížeč špatně interpretoval typ souboru
+        // against MIME sniffing - prevents the browser from misinterpreting the file type
         "X-Content-Type-Options": "nosniff",
 
-        // proti embedování stránky do iframe (clickjacking ochrana)
+        // against embedding the page in an iframe (clickjacking protection)
         "X-Frame-Options": "DENY",
 
-        // Referrer hlavička – neposílá odkud uživatel přišel
+        // Referrer header - does not send where the user came from
         "Referrer-Policy": "no-referrer",
 
-        // Omezení browser API (např. GPS)
+        // Restrict browser APIs (e.g. GPS)
         "Permissions-Policy": "geolocation=()",
       },
     },
