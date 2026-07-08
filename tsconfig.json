@@ -26,7 +26,7 @@
 
 		/* If transpiling with TypeScript: */
 		"module": "es2022",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"outDir": "./dist",
 		"sourceMap": true,
 
@@ -41,8 +41,7 @@
 		"lib": ["es2022", "dom", "dom.iterable"],
 		"jsx": "react",
 
-		/* For shadcn: */
-		"baseUrl": ".",
+		/* For shadcn (path entries resolve relative to this tsconfig, no baseUrl needed): */
 		"paths": {
 			"@/*": ["./src/*"]
 		},
@@ -51,4 +50,3 @@
 		"types": ["vite-plugin-svgr/client"]
 	},
 }
-
