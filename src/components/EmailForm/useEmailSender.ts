@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function useEmailSender() {
+  const { t } = useTranslation();
   const [statusMessage, setStatusMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
@@ -23,19 +25,15 @@ export default function useEmailSender() {
         },
       );
       if (response.ok) {
-        setStatusMessage("Email sent successfully!");
+        setStatusMessage(t("EmailForm.sentSuccess"));
         setIsError(false);
       } else {
-        setStatusMessage(
-          "Error while sending the email. Go fix it.",
-        );
+        setStatusMessage(t("EmailForm.sendError"));
         setIsError(true);
       }
     } catch (error) {
       console.error("Error:", error);
-      setStatusMessage(
-        "Error while sending the email. Go fix it.",
-      );
+      setStatusMessage(t("EmailForm.sendError"));
       setIsError(true);
     }
   };

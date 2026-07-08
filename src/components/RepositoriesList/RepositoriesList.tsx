@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getRepositoriesForMultipleUsers } from "@/graphql/gql";
 import type { Repository } from "@/types/repository";
 
@@ -9,6 +10,7 @@ type RepositoriesProps = {
 export function RepositoriesList({
   owners,
 }: RepositoriesProps) {
+  const { t } = useTranslation();
   const [repositories, setRepositories] = useState<
     Record<string, Repository[]>
   >({});
@@ -24,9 +26,7 @@ export function RepositoriesList({
         if (Object.keys(repoData).length > 0) {
           setRepositories(repoData);
         } else {
-          setError(
-            "No repositories found for the specified owners.",
-          );
+          setError(t("RepositoriesList.noRepositories"));
         }
       } catch (error) {
         console.error(
@@ -34,7 +34,12 @@ export function RepositoriesList({
           error,
         );
         setError(
-          `Error fetching repositories: ${error instanceof Error ? error.message : "Unknown error"}`,
+          t("RepositoriesList.fetchError", {
+            message:
+              error instanceof Error
+                ? error.message
+                : t("RepositoriesList.unknownError"),
+          }),
         );
       } finally {
         setLoading(false);
@@ -45,13 +50,15 @@ export function RepositoriesList({
   }, [owners]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>{t("RepositoriesList.loading")}</p>;
   }
 
   if (error) {
     return (
       <div className="error-message bg-red-100 text-red-700 border border-red-400 p-4 rounded">
-        <h2 className="font-bold">An error occurred:</h2>
+        <h2 className="font-bold">
+          {t("RepositoriesList.errorTitle")}
+        </h2>
         <p>{error}</p>
       </div>
     );
@@ -80,7 +87,9 @@ export function RepositoriesList({
                 <div className="flex items-center gap-5 mb-4">
                   <img
                     src={ownerData.avatarUrl}
-                    alt={`${ownerData.login}'s avatar`}
+                    alt={t("RepositoriesList.avatarAlt", {
+                      login: ownerData.login,
+                    })}
                     width={40}
                     height={40}
                     className="rounded-full items-center"
@@ -97,15 +106,19 @@ export function RepositoriesList({
                   </h3>
                   <p>{repo.description}</p>
                   <p>
-                    Updated at:{" "}
+                    {t("RepositoriesList.updatedAt")}{" "}
                     {new Date(
                       repo.updatedAt,
                     ).toLocaleString()}
                   </p>
-                  <p>Stars: {repo.stargazerCount}</p>
                   <p>
-                    Primary Language:{" "}
-                    {repo.primaryLanguage?.name || "N/A"}
+                    {t("RepositoriesList.stars")}{" "}
+                    {repo.stargazerCount}
+                  </p>
+                  <p>
+                    {t("RepositoriesList.primaryLanguage")}{" "}
+                    {repo.primaryLanguage?.name ||
+                      t("RepositoriesList.notAvailable")}
                   </p>
                 </div>
               ))}

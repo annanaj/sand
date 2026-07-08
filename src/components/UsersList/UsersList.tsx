@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   RiDeleteBin5Line,
   RiEdit2Fill,
@@ -22,6 +23,7 @@ type UsersList = {
 };
 
 export function UsersList() {
+  const { t } = useTranslation();
   const [users, setUsers] = useState<UsersList[]>([]);
   const [newUser, setNewUser] = useState({
     name: "",
@@ -48,11 +50,9 @@ export function UsersList() {
   ) => {
     const newValue = e.target.value;
     if (newValue.length < 3) {
-      setNameError(
-        "Name must be at least 3 characters long.",
-      );
+      setNameError(t("UsersList.nameTooShort"));
     } else if (newValue.length > 20) {
-      setNameError("Name must be less than 20 characters.");
+      setNameError(t("UsersList.nameTooLong"));
     } else {
       setNameError("");
       // Check if editingUser is not null before updating
@@ -70,7 +70,7 @@ export function UsersList() {
   ) => {
     const newValue = e.target.value;
     if (!emailRegex.test(newValue)) {
-      setEmailError("Please enter a valid email address.");
+      setEmailError(t("UsersList.invalidEmail"));
     } else {
       setEmailError("");
       // Check if editingUser is not null before updating
@@ -104,14 +104,10 @@ export function UsersList() {
         !editingUser.name ||
         editingUser.name.trim().length < 3
       ) {
-        setNameError(
-          "Name must be at least 3 characters long.",
-        );
+        setNameError(t("UsersList.nameTooShort"));
         return;
       } else if (editingUser.name.length > 20) {
-        setNameError(
-          "Name must be less than 20 characters.",
-        );
+        setNameError(t("UsersList.nameTooLong"));
         return;
       } else {
         setNameError("");
@@ -121,9 +117,7 @@ export function UsersList() {
         !editingUser.email ||
         !emailRegex.test(editingUser.email)
       ) {
-        setEmailError(
-          "Please enter a valid email address.",
-        );
+        setEmailError(t("UsersList.invalidEmail"));
         return;
       } else {
         setEmailError("");
@@ -154,18 +148,18 @@ export function UsersList() {
 
   return (
     <div className="card-container items-center">
-      <h2 className="title">Add some users</h2>
+      <h2 className="title">{t("UsersList.title")}</h2>
       <form className="form" onSubmit={handleCreateUser}>
         <label
           htmlFor="fullName"
           className="visuallyHidden"
         >
-          Full Name
+          {t("UsersList.fullNameLabel")}
         </label>
         <input
           type="text"
           id="fullName"
-          placeholder="Full name"
+          placeholder={t("UsersList.fullNamePlaceholder")}
           value={newUser.name}
           onChange={(e) =>
             setNewUser({
@@ -176,17 +170,17 @@ export function UsersList() {
           minLength={3}
           maxLength={20}
           aria-required="true"
-          aria-label="Full Name"
+          aria-label={t("UsersList.fullNameLabel")}
           required
         />
 
         <label htmlFor="email" className="visuallyHidden">
-          Email
+          {t("UsersList.emailLabel")}
         </label>
         <input
           type="email"
           id="email"
-          placeholder="Email"
+          placeholder={t("UsersList.emailPlaceholder")}
           value={newUser.email}
           onChange={(e) =>
             setNewUser({
@@ -197,11 +191,14 @@ export function UsersList() {
           aria-required="true"
           aria-invalid={!!emailError}
           aria-describedby="emailError"
-          aria-label="Email Address"
+          aria-label={t("UsersList.emailAriaLabel")}
           required
         />
-        <Button type="submit" aria-label="Add User">
-          Add User
+        <Button
+          type="submit"
+          aria-label={t("UsersList.addUser")}
+        >
+          {t("UsersList.addUser")}
         </Button>
       </form>
 
@@ -211,16 +208,16 @@ export function UsersList() {
             htmlFor="nameEdit"
             className="visuallyHidden"
           >
-            Name
+            {t("UsersList.nameLabel")}
           </label>
           <input
             type="text"
             id="nameEdit"
-            placeholder="Full name"
+            placeholder={t("UsersList.fullNamePlaceholder")}
             value={editingUser.name}
             onChange={handleNameChange}
             aria-required="true"
-            aria-label="Full Name"
+            aria-label={t("UsersList.fullNameLabel")}
           />
           {nameError && (
             <p className="error">{nameError}</p>
@@ -230,21 +227,21 @@ export function UsersList() {
             htmlFor="emailEdit"
             className="visuallyHidden"
           >
-            Email
+            {t("UsersList.emailLabel")}
           </label>
           <input
             type="email"
             id="emailEdit"
-            placeholder="Email"
+            placeholder={t("UsersList.emailPlaceholder")}
             value={editingUser.email}
             onChange={handleEmailChange}
             aria-required="true"
             aria-invalid={!!emailError}
             aria-describedby="emailError"
-            aria-label="Email Address"
+            aria-label={t("UsersList.emailAriaLabel")}
           />
           {emailError && (
-            <p className="erro">{emailError}</p>
+            <p className="error">{emailError}</p>
           )}
 
           <div className={styles.userButtons}>
@@ -256,10 +253,10 @@ export function UsersList() {
                 setEmailError("");
               }}
             >
-              Cancel
+              {t("UsersList.cancel")}
             </button>
             <button onClick={handleUpdateUser}>
-              Update
+              {t("UsersList.update")}
             </button>
           </div>
         </div>
@@ -274,12 +271,14 @@ export function UsersList() {
             <div className={styles.userButtons}>
               <button
                 className="buttonTransparent"
+                aria-label={t("UsersList.editUser")}
                 onClick={() => setEditingUser(user)}
               >
                 <RiEdit2Fill />
               </button>
               <button
                 className="buttonTransparent"
+                aria-label={t("UsersList.deleteUser")}
                 onClick={() => handleDeleteUser(user.id)}
               >
                 <RiDeleteBin5Line />

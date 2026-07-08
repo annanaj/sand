@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "../ui/button";
 
@@ -8,6 +9,7 @@ import Video from "/short_video.mp4";
 import styles from "./Player.module.scss";
 
 export function Player() {
+  const { t } = useTranslation();
   const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isAudioPlaying, setIsAudioPlaying] =
@@ -52,17 +54,19 @@ export function Player() {
   return (
     <>
       <div className="card-container items-center">
-        <h2 className="title">Listen & watchs</h2>
+        <h2 className="title">{t("Player.title")}</h2>
         <audio
           ref={audioRef}
           className={styles.media}
           controls
         >
           <source src={Audio} type="audio/mpeg" />
-          Your browser does not support the audio tag.
+          {t("Player.audioNotSupported")}
         </audio>
         <Button onClick={handleAudioPlayPause}>
-          {isAudioPlaying ? "Pause It" : "Sound on"}
+          {isAudioPlaying
+            ? t("Player.pauseAudio")
+            : t("Player.playAudio")}
         </Button>
         <video
           width="auto"
@@ -75,10 +79,12 @@ export function Player() {
           onMouseLeave={handleMouseLeave}
         >
           <source src={Video} type="video/mp4" />
-          Your browser does not support the video tag.
+          {t("Player.videoNotSupported")}
         </video>
         <Button onClick={handleVideoPlayPause}>
-          {isVideoPlaying ? "Pause Video" : "Let's play"}
+          {isVideoPlaying
+            ? t("Player.pauseVideo")
+            : t("Player.playVideo")}
         </Button>
       </div>
     </>

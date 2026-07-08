@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import ReactGA from "react-ga4";
 import * as Sentry from "@sentry/react";
+import { useTranslation } from "react-i18next";
 
 import "./index.css";
 import "./i18n";
@@ -77,9 +78,11 @@ function RouteTracker() {
 }
 
 export default function App() {
+  const { t } = useTranslation();
+
   return (
     <Sentry.ErrorBoundary
-      fallback={<p>Sonething went wrong...</p>}
+      fallback={<p>{t("App.errorFallback")}</p>}
     >
       <ThemeProvider>
         <Router>

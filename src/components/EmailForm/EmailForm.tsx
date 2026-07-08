@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 import MessageInput from "./MessageInput";
@@ -6,6 +7,7 @@ import EmailInput from "./EmailInput";
 import useEmailSender from "./useEmailSender";
 
 export function EmailForm() {
+  const { t } = useTranslation();
   const { sendEmail, statusMessage, isError } =
     useEmailSender();
   const [email, setEmail] = useState("");
@@ -22,7 +24,7 @@ export function EmailForm() {
 
   return (
     <div className="card-container items-center">
-      <h2 className="title">Send the email</h2>
+      <h2 className="title">{t("EmailForm.title")}</h2>
       <form onSubmit={handleSubmit} className="form">
         <EmailInput
           value={email}
@@ -32,8 +34,11 @@ export function EmailForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button type="submit" aria-label="Send email">
-          Send email
+        <Button
+          type="submit"
+          aria-label={t("EmailForm.sendButton")}
+        >
+          {t("EmailForm.sendButton")}
         </Button>
       </form>
       {statusMessage && (

@@ -1,27 +1,106 @@
 {
-	"Notification": {
-		"title": "Notifikační API",
-		"button": "Vyšli notifikaci",
-		"permission": "Současný stav povolení notifikací:",
-		"messageTitle": "Hej!",
-		"messageBody": "Tohle je jen testovní notifikace",
-		"denied": "Notifikace zamítnuty"
-	},
-	"Sentry": {
-		"title": "Sentry",
-		"throwButton": "Hoď testovací chybu"
-	},
-	"DiscordLogin": {
-		"title": "Přihlášení přes Discord",
-		"button": "Přihlásit přes Discord"
-	},
-	"Animations": {
-		"badgeActive": "Aktivní",
-		"lottieTitle": "Lottie hotové animace",
-		"riveTitle": "Rive vlastní animace"
-	},
-	"Language": {
-		"en": "EN",
-		"cs": "CS"
-	}
+  "Notification": {
+    "title": "Notifikační API",
+    "button": "Vyšli notifikaci",
+    "permission": "Současný stav povolení notifikací:",
+    "messageTitle": "Hej!",
+    "messageBody": "Tohle je jen testovací notifikace",
+    "denied": "Notifikace zamítnuty"
+  },
+  "Sentry": {
+    "title": "Sentry",
+    "throwButton": "Hoď testovací chybu"
+  },
+  "DiscordLogin": {
+    "title": "Přihlášení přes Discord",
+    "button": "Přihlásit přes Discord"
+  },
+  "Animations": {
+    "badgeActive": "Aktivní",
+    "lottieTitle": "Lottie hotové animace",
+    "riveTitle": "Rive vlastní animace"
+  },
+  "Language": {
+    "en": "EN",
+    "cs": "CS"
+  },
+  "LoggedIn": {
+    "title": "Jsem přihlášen(a) přes Discord",
+    "email": "a můj e-mail je:",
+    "loading": "Načítám údaje o uživatelském účtu..."
+  },
+  "Encryption": {
+    "title": "Šifrování",
+    "placeholder": "Napiš zprávu",
+    "save": "Uložit",
+    "decrypt": "Dešifrovat",
+    "decryptFailed": "Dešifrování se nezdařilo."
+  },
+  "DiscordCallback": {
+    "loggingIn": "Přihlašování přes Discord..."
+  },
+  "RepositoriesList": {
+    "loading": "Načítání...",
+    "errorTitle": "Došlo k chybě:",
+    "noRepositories": "Pro zadané vlastníky nebyly nalezeny žádné repozitáře.",
+    "fetchError": "Chyba při načítání repozitářů: {{message}}",
+    "unknownError": "Neznámá chyba",
+    "avatarAlt": "avatar uživatele {{login}}",
+    "updatedAt": "Aktualizováno:",
+    "stars": "Hvězdy:",
+    "primaryLanguage": "Hlavní jazyk:",
+    "notAvailable": "neuvedeno"
+  },
+  "EmailForm": {
+    "title": "Odešli e-mail",
+    "sendButton": "Odeslat e-mail",
+    "emailPlaceholder": "E-mail",
+    "emailAriaLabel": "E-mailová adresa",
+    "messagePlaceholder": "Sem napiš zprávu",
+    "messageAriaLabel": "Text zprávy",
+    "sentSuccess": "E-mail úspěšně odeslán!",
+    "sendError": "Chyba při odesílání e-mailu. Běž to opravit."
+  },
+  "UsersList": {
+    "title": "Přidej nějaké uživatele",
+    "fullNameLabel": "Celé jméno",
+    "fullNamePlaceholder": "Celé jméno",
+    "nameLabel": "Jméno",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "E-mail",
+    "emailAriaLabel": "E-mailová adresa",
+    "addUser": "Přidat uživatele",
+    "cancel": "Zrušit",
+    "update": "Aktualizovat",
+    "editUser": "Upravit uživatele",
+    "deleteUser": "Smazat uživatele",
+    "nameTooShort": "Jméno musí mít alespoň 3 znaky.",
+    "nameTooLong": "Jméno musí mít méně než 20 znaků.",
+    "invalidEmail": "Zadej platnou e-mailovou adresu."
+  },
+  "Keyframes": {
+    "title": "Keyframes",
+    "windowWidth": "Šířka okna přes useEffect: {{width}}px",
+    "button": "Ahoj"
+  },
+  "ShopItem": {
+    "title": "Switch Super Mario Bros.",
+    "description": "Vstup do světa zázraků ve hře Super Mario Bros.",
+    "buyButton": "Koupit tuhle hru"
+  },
+  "Player": {
+    "title": "Poslouchej a sleduj",
+    "audioNotSupported": "Tvůj prohlížeč nepodporuje přehrávání audia.",
+    "videoNotSupported": "Tvůj prohlížeč nepodporuje přehrávání videa.",
+    "pauseAudio": "Pozastavit",
+    "playAudio": "Pusť zvuk",
+    "pauseVideo": "Pozastavit video",
+    "playVideo": "Pusť video"
+  },
+  "HigherOrder": {
+    "counter": "počítadlo: {{value}}"
+  },
+  "App": {
+    "errorFallback": "Něco se pokazilo..."
+  }
 }

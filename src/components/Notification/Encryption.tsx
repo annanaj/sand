@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 
 export function Encryption() {
+  const { t } = useTranslation();
   const [input, setInput] = useState("");
   const [decryptedData, setDecryptedData] = useState("");
 
@@ -115,13 +117,13 @@ export function Encryption() {
       setDecryptedData(decoded);
     } catch (err) {
       console.error("Decryption failed:", err);
-      setDecryptedData("Failed to decrypt.");
+      setDecryptedData(t("Encryption.decryptFailed"));
     }
   };
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="title">Encryption</h2>
+      <h2 className="title">{t("Encryption.title")}</h2>
       <form
         onSubmit={handleSubmit}
         className="flex gap-2 mb-2"
@@ -130,12 +132,16 @@ export function Encryption() {
           type="text"
           value={input}
           onChange={handleInputChange}
-          placeholder="Type message"
+          placeholder={t("Encryption.placeholder")}
         />
-        <Button type="submit">Save</Button>
+        <Button type="submit">
+          {t("Encryption.save")}
+        </Button>
       </form>
       <div className="flex gap-2 items-center">
-        <Button onClick={handleDecrypt}>Decrypt</Button>
+        <Button onClick={handleDecrypt}>
+          {t("Encryption.decrypt")}
+        </Button>
         {decryptedData && <p>{decryptedData}</p>}
       </div>
     </div>

@@ -8,6 +8,7 @@ import { describe, it, expect, vi } from "vitest";
 import { UsersList } from "../components/UsersList/UsersList";
 import { ThemeProvider } from "../components/ThemeProvider";
 import "@testing-library/jest-dom";
+import "@/i18n";
 
 // Mock the fetchUsers API call
 vi.mock("@/services/api", () => ({

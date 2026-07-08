@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type HigherOrderProps = {
   onBuy?: () => void;
@@ -10,6 +11,7 @@ export const HigherOrder = <P extends object>(
   return function WithCounterComponent(
     props: P & HigherOrderProps,
   ) {
+    const { t } = useTranslation();
     const [count, setCount] = useState(0);
 
     const handleIncrement = () => {
@@ -22,7 +24,9 @@ export const HigherOrder = <P extends object>(
       <div className="card-container items-center">
         <WrappedComponent {...props} onBuy={onBuy} />
         <div className="flex items-center space-x-4 pt-2">
-          <span>counter: {count}</span>
+          <span>
+            {t("HigherOrder.counter", { value: count })}
+          </span>
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import SuperMario from "../svg/supermario.svg";
 import HomeIcon from "../svg/home.svg";
 import {
@@ -15,6 +16,8 @@ type ShopItemProps = {
 };
 
 export function ShopItem({ onBuy }: ShopItemProps) {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <CardHeader>
@@ -24,18 +27,18 @@ export function ShopItem({ onBuy }: ShopItemProps) {
 
         <CardTitle className="title title-left flex gap-2">
           <HomeIcon />
-          Switch Super Mario Bros.
+          {t("ShopItem.title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p>
-          Step into the world of wonders in Super Mario
-          Bros.
-        </p>
+        <p>{t("ShopItem.description")}</p>
       </CardContent>
       <CardFooter className="justify-center">
-        <Button aria-label="Buy this game" onClick={onBuy}>
-          Buy this game
+        <Button
+          aria-label={t("ShopItem.buyButton")}
+          onClick={onBuy}
+        >
+          {t("ShopItem.buyButton")}
         </Button>
       </CardFooter>
     </Card>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ImSpinner9 } from "react-icons/im";
 import { Button } from "@/components/ui/button";
 import Spinner from "../svg/spinner.svg";
 import styles from "./Keyframes.module.scss";
 
 export function Keyframes() {
+  const { t } = useTranslation();
   const [windowWidth, setWindowWidth] = useState(
     window.innerWidth,
   );
@@ -27,9 +29,11 @@ export function Keyframes() {
 
   return (
     <div className="card-container items-center">
-      <h2 className="title">Keyframes</h2>
+      <h2 className="title">{t("Keyframes.title")}</h2>
       <p className="pb-8">
-        Window width with useEffect: {windowWidth}px
+        {t("Keyframes.windowWidth", {
+          width: windowWidth,
+        })}
       </p>
       <div className="flex gap-3 mt-5">
         <div
@@ -42,7 +46,9 @@ export function Keyframes() {
           className={`${styles.floatingCircle} ${styles.third}`}
         ></div>
       </div>
-      <Button className={styles.button}>Hey there</Button>
+      <Button className={styles.button}>
+        {t("Keyframes.button")}
+      </Button>
       <ImSpinner9 className={styles.spinner} />
       <div
         className={styles.wheel}

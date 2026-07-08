@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // Handles the response from Discord. When the user clicks the login button
@@ -11,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 // the user account info from Discord.
 
 const DiscordCallback = () => {
+  const { t } = useTranslation();
   const [, setUserInfo] = useState(null);
   const [, setAccessToken] = useState(null);
   const hasFetched = useRef(false); // Flag to prevent repeated calls
@@ -79,7 +81,7 @@ const DiscordCallback = () => {
 
   return (
     <div>
-      <h2>Logging in with Discord...</h2>
+      <h2>{t("DiscordCallback.loggingIn")}</h2>
     </div>
   );
 };

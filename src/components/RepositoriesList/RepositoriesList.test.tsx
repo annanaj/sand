@@ -8,6 +8,7 @@ import {
   beforeEach,
 } from "vitest";
 import "@testing-library/jest-dom";
+import "@/i18n";
 import type { Repository } from "@/types/repository";
 import { RepositoriesList } from "./RepositoriesList";
 import { getRepositoriesForMultipleUsers } from "@/graphql/gql";

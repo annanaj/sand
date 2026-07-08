@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 type EmailInputProps = {
   value: string;
@@ -9,14 +10,16 @@ export default function EmailInput({
   value,
   onChange,
 }: EmailInputProps) {
+  const { t } = useTranslation();
+
   return (
     <input
       type="email"
-      placeholder="Email"
+      placeholder={t("EmailForm.emailPlaceholder")}
       value={value}
       onChange={onChange}
       aria-required="true"
-      aria-label="Email Address"
+      aria-label={t("EmailForm.emailAriaLabel")}
       required
     />
   );

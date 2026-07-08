@@ -1,27 +1,106 @@
 {
-	"Notification": {
-		"title": "Notification API",
-		"button": "Show notification",
-		"permission": "Current permission status:",
-		"messageTitle": "Hey!",
-		"messageBody": "This is a test notification",
-		"denied": "Notifications were denied"
-	},
-	"Sentry": {
-		"title": "Sentry",
-		"throwButton": "Throw test error"
-	},
-	"DiscordLogin": {
-		"title": "Login with Discord",
-		"button": "Login with Discord"
-	},
-	"Animations": {
-		"badgeActive": "Active",
-		"lottieTitle": "Lottie pre-made",
-		"riveTitle": "Rive creations"
-	},
-	"Language": {
-		"en": "EN",
-		"cs": "CZ"
-	}
+  "Notification": {
+    "title": "Notification API",
+    "button": "Show notification",
+    "permission": "Current permission status:",
+    "messageTitle": "Hey!",
+    "messageBody": "This is a test notification",
+    "denied": "Notifications were denied"
+  },
+  "Sentry": {
+    "title": "Sentry",
+    "throwButton": "Throw test error"
+  },
+  "DiscordLogin": {
+    "title": "Login with Discord",
+    "button": "Login with Discord"
+  },
+  "Animations": {
+    "badgeActive": "Active",
+    "lottieTitle": "Lottie pre-made",
+    "riveTitle": "Rive creations"
+  },
+  "Language": {
+    "en": "EN",
+    "cs": "CZ"
+  },
+  "LoggedIn": {
+    "title": "I am logged in via Discord",
+    "email": "and my email is:",
+    "loading": "Loading user account info..."
+  },
+  "Encryption": {
+    "title": "Encryption",
+    "placeholder": "Type message",
+    "save": "Save",
+    "decrypt": "Decrypt",
+    "decryptFailed": "Failed to decrypt."
+  },
+  "DiscordCallback": {
+    "loggingIn": "Logging in with Discord..."
+  },
+  "RepositoriesList": {
+    "loading": "Loading...",
+    "errorTitle": "An error occurred:",
+    "noRepositories": "No repositories found for the specified owners.",
+    "fetchError": "Error fetching repositories: {{message}}",
+    "unknownError": "Unknown error",
+    "avatarAlt": "{{login}}'s avatar",
+    "updatedAt": "Updated at:",
+    "stars": "Stars:",
+    "primaryLanguage": "Primary Language:",
+    "notAvailable": "N/A"
+  },
+  "EmailForm": {
+    "title": "Send the email",
+    "sendButton": "Send email",
+    "emailPlaceholder": "Email",
+    "emailAriaLabel": "Email Address",
+    "messagePlaceholder": "Write the message here",
+    "messageAriaLabel": "Email Message",
+    "sentSuccess": "Email sent successfully!",
+    "sendError": "Error while sending the email. Go fix it."
+  },
+  "UsersList": {
+    "title": "Add some users",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "Full name",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Email",
+    "emailAriaLabel": "Email Address",
+    "addUser": "Add User",
+    "cancel": "Cancel",
+    "update": "Update",
+    "editUser": "Edit user",
+    "deleteUser": "Delete user",
+    "nameTooShort": "Name must be at least 3 characters long.",
+    "nameTooLong": "Name must be less than 20 characters.",
+    "invalidEmail": "Please enter a valid email address."
+  },
+  "Keyframes": {
+    "title": "Keyframes",
+    "windowWidth": "Window width with useEffect: {{width}}px",
+    "button": "Hey there"
+  },
+  "ShopItem": {
+    "title": "Switch Super Mario Bros.",
+    "description": "Step into the world of wonders in Super Mario Bros.",
+    "buyButton": "Buy this game"
+  },
+  "Player": {
+    "title": "Listen & watch",
+    "audioNotSupported": "Your browser does not support the audio tag.",
+    "videoNotSupported": "Your browser does not support the video tag.",
+    "pauseAudio": "Pause It",
+    "playAudio": "Sound on",
+    "pauseVideo": "Pause Video",
+    "playVideo": "Let's play"
+  },
+  "HigherOrder": {
+    "counter": "counter: {{value}}"
+  },
+  "App": {
+    "errorFallback": "Something went wrong..."
+  }
 }
