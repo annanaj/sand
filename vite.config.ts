@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => {
             sentryVitePlugin({
               authToken: env.SENTRY_AUTH_TOKEN,
               org: "mine-92",
-              project: "javascript-react",
+              project: "sand",
               release: {
                 // Release name defaults to `git rev-parse HEAD`;
                 // associate commits so Sentry can show suspect commits
