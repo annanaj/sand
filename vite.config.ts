@@ -33,6 +33,12 @@ export default defineConfig(({ mode }) => {
               authToken: env.SENTRY_AUTH_TOKEN,
               org: "mine-92",
               project: "javascript-react",
+              release: {
+                // Release name defaults to `git rev-parse HEAD`;
+                // associate commits so Sentry can show suspect commits
+                // (requires full git history in CI: fetch-depth: 0).
+                setCommits: { auto: true },
+              },
               sourcemaps: {
                 // Po uploadu do Sentry mapy smazat, ať se nedeployují.
                 filesToDeleteAfterUpload: [

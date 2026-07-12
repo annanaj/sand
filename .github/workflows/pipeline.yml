@@ -9,6 +9,9 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
+              with:
+                  # Full history so Sentry setCommits can associate commits
+                  fetch-depth: 0
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
@@ -32,6 +35,7 @@ jobs:
               env:
                   EMAIL_USER: ${{ secrets.EMAIL_USER }}
                   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+                  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v4
